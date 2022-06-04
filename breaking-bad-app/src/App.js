@@ -1,5 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
+import Home from "./pages/Home"
 
 function App() {
   return (
@@ -15,10 +16,6 @@ function App() {
     </Routes>
   </div>
   );
-}
-
-function Home() {
-  return <div>Home</div>
 }
 
 function About() {
