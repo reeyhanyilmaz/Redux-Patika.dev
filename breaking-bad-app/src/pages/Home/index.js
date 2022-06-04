@@ -9,6 +9,8 @@ import Error from "../../components/Error";
 function Home() {
   const dispatch = useDispatch();
   const characters = useSelector((state) => state.characters.items);
+  const nextPage = useSelector((state) => state.characters.page);
+  const hasNextPage = useSelector((state) => state.characters.hasNextPage);
   const isLoading = useSelector((state) => state.characters.isLoading);
   const error = useSelector((state) => state.characters.error);
   console.log("data", characters);
@@ -18,9 +20,7 @@ function Home() {
     dispatch(fetchCharacters());
   }, [dispatch]); //dependencey array'e dispactch verdik.
 
-  if (isLoading) {
-    return <Loading />;
-  }
+
   if (error) {
     return <Error message={error} />;
   }
@@ -44,8 +44,17 @@ function Home() {
         ))}
         {/* array of JSX items */}
       </Masonry>
+
+      <div style={{ padding: "20px 0 40px 0", textAlign: "center" }}>
+        {isLoading && <Loading />}
+
+        {/* loading yoksa ve baika gösterilecek sayfa yoksa (items elemanları) bunu butonu göster  ve çalıştır. */}
+        {hasNextPage && !isLoading && <button onClick={() => dispatch(fetchCharacters(nextPage))}>Load More ({nextPage})</button>}
+
+        {!hasNextPage && <div>There is nothing to be shown.</div>}    
+      </div>
     </div>
-  );
+  ); 
 }
 
 export default Home;
