@@ -32,8 +32,8 @@ function Home() {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {characters.map((character) => (
-          <div key={character.char_id}>
+        {characters.map((character, i) => (
+          <div key={i}>
             <img
               alt={character.name}
               src={character.img}
@@ -49,7 +49,7 @@ function Home() {
         {isLoading && <Loading />}
 
         {/* loading yoksa ve baika gösterilecek sayfa yoksa (items elemanları) bunu butonu göster  ve çalıştır. */}
-        {hasNextPage && !isLoading && <button onClick={() => dispatch(fetchCharacters(nextPage))}>Load More ({nextPage})</button>}
+        {hasNextPage && !isLoading && (<button onClick={() => dispatch(fetchCharacters(nextPage))}>Load More ({nextPage})</button>)}
 
         {!hasNextPage && <div>There is nothing to be shown.</div>}    
       </div>
