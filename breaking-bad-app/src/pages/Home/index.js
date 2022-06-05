@@ -5,6 +5,7 @@ import Masonry from "react-masonry-css";
 import "./styles.css";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
+import { Link } from "react-router-dom";
 
 function Home() {
   const dispatch = useDispatch();
@@ -34,12 +35,14 @@ function Home() {
       >
         {characters.map((character, i) => (
           <div key={i}>
+             <Link to="/">
             <img
               alt={character.name}
               src={character.img}
               className="character-img"
             />
             <div className="char_name">{character.name}</div>
+            </Link>
           </div>
         ))}
         {/* array of JSX items */}
