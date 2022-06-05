@@ -13,7 +13,8 @@ export const charactersSlice = createSlice({
   name: "characters", //dosyanın ismi.
   initialState: {
     items: [],
-    isLoading: false,
+    // isLoading: false,
+    status: "idle",
     page:0,
     hasNextPage: true,
   },
@@ -22,12 +23,12 @@ export const charactersSlice = createSlice({
   //async actionları buraya yazıyoruz.
   extraReducers: {
     [fetchCharacters.pending]: (state, action) => {
-      state.isLoading = true;
+      state.status = "loading";
     },
     [fetchCharacters.fulfilled]: (state, action) => {
       // state.items = action.payload;
       state.items = [...state.items, ...action.payload]; //sayfa yüklediğimizde önceki sayfadaki elemanları da göstersin diye.
-      state.isLoading = false;
+      state.status = "succeeded";
       state.page +=1; //sayfa numarasını arttırmak için.
 
       if(action.payload.length<12){
@@ -35,10 +36,9 @@ export const charactersSlice = createSlice({
        }
 
       console.log("action.payload", action.payload); //action.payload bizim objelerimiz oldu (karakter ve bilgilerini içeren).
-    },
-      
+    },      
     [fetchCharacters.rejected]: (state, action) => {
-      state.isLoading = false;
+      state.status = "failed";
       state.error = action.error.message;
     },
   },

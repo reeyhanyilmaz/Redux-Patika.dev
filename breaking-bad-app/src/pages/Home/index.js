@@ -12,17 +12,20 @@ function Home() {
   const characters = useSelector((state) => state.characters.items);
   const nextPage = useSelector((state) => state.characters.page);
   const hasNextPage = useSelector((state) => state.characters.hasNextPage);
-  const isLoading = useSelector((state) => state.characters.isLoading);
+  const status = useSelector((state) => state.characters.status);
   const error = useSelector((state) => state.characters.error);
   console.log("data", characters);
 
   //component (load olunca) mount edildiğinde fethCharacters çalışsın diye useEffect kullandık.
   useEffect(() => {
-    dispatch(fetchCharacters());
-  }, [dispatch]); //dependencey array'e dispactch verdik.
+    if(status === "idle"){
+      //detay ekrana gidip geri geldiğimiz de tekrar dispacth yapıyor ve (12li tekrar ekrana basıyor) unique key hatası alıyoruz. O yüzden fetch etmemesini sağlamak için
+      dispatch(fetchCharacters());
+    }
+  }, [dispatch, status]); //dependencey array'e dispactch verdik.
 
 
-  if (error) {
+  if (status === "failed") {
     return <Error message={error} />;
   }
 
@@ -33,9 +36,9 @@ function Home() {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {characters.map((character, i) => (
-          <div key={i}>
-             <Link to="/">
+        {characters.map((character) => (
+          <div key={character.char_id}>
+             <Link to="/char/2">
             <img
               alt={character.name}
               src={character.img}
@@ -49,10 +52,10 @@ function Home() {
       </Masonry>
 
       <div style={{ padding: "20px 0 40px 0", textAlign: "center" }}>
-        {isLoading && <Loading />}
+        {status === "loading" && <Loading />}
 
         {/* loading yoksa ve baika gösterilecek sayfa yoksa (items elemanları) bunu butonu göster  ve çalıştır. */}
-        {hasNextPage && !isLoading && (<button onClick={() => dispatch(fetchCharacters(nextPage))}>Load More ({nextPage})</button>)}
+        {hasNextPage && status !== "loading" && (<button onClick={() => dispatch(fetchCharacters(nextPage))}>Load More ({nextPage})</button>)}
 
         {!hasNextPage && <div>There is nothing to be shown.</div>}    
       </div>
