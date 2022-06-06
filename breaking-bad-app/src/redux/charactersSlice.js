@@ -20,7 +20,7 @@ export const charactersSlice = createSlice({
   },
   reducers: {},
 
-  //async actionları buraya yazıyoruz.
+  //async actionları buraya yazıyoruz (state değişim işlemleri). thunk ile .
   extraReducers: {
     [fetchCharacters.pending]: (state, action) => {
       state.status = "loading";

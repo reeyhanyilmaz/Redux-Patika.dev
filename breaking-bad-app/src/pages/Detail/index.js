@@ -4,7 +4,7 @@ import axios from "axios";
 import Loading from '../../components/Loading';
 
 function Detail() {
-    const [char, setChar] = useState(null);
+    const [char, setChar] = useState(null); //sayfa yenilenince store'dan fecth edilemeyeceği için react ile state oluşturduk verileri göstermek için.
     const {char_id} = useParams(); //id parametremiz.
     console.log("char_id",char_id);
     const [loading, setLoading] = useState(true);
