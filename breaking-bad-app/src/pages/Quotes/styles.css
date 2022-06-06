@@ -14,6 +14,15 @@
     
 }
 
+.quotes_item a{
+    text-decoration: none;
+    color: #000;
+}
+
+.quotes_item a:hover {
+    text-decoration: underline;
+}
+
 .quotes_length{
     display: flex;
     flex-direction: column;
