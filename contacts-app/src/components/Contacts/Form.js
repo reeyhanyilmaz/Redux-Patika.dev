@@ -12,7 +12,7 @@ function Form() {
       e.preventDefault(); //native davranışı engelliyoruz, submit olunca sayfanın yenilenmesini engellemek icin.
     //   console.log("saASa") ; //submit olduğunu console'dan kontrol ettim.
 
-    if(!name || !number) return false; //name yoksa çalışma.
+    if(!name || !number) return false; //name yoksa çalışma. validation işlemi.
 
     // const names = name.split(",");
     // names.forEach((name) =>  dispatch(addContact({id: nanoid(), name})));
@@ -20,7 +20,9 @@ function Form() {
     // const data = names.map((name) => ({id: nanoid(), name}));
     // dispatch(addContacts(data)); 
 
-    dispatch(addContact({id: nanoid(), name, phone_number: number}));
+    dispatch(addContact({id: nanoid(), name, phone_number: number})); 
+    //verilen parametlerelerde ne varsa state üzerindeki entities altına geçer.
+    
     setName("");//input boşaltmak için
     setNumber(""); 
   }

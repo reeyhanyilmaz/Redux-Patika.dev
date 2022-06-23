@@ -11,10 +11,10 @@ function EditForm({contact}) { //edit.js'den contact'i prop çektik
     const handleSubmit = (e) => {
         e.preventDefault(); //native (varsayılan) davranışı engelliyoruz, submit olunca sayfanın yenilenmesini engellemek icin.
     
-        if(!name || !number) return false;
+        if(!name || !number) return false; // validation işlemi.
   
         dispatch(updateContact({
-            id: contact.id,
+            id: contact.id, //güncellenecej eleman id'si 
             changes: { //değişen şeyleri bu field'a veriyoruz.
                 name,
                 phone_number: number,
