@@ -13,11 +13,13 @@ function Form() {
 
     if(!name) return false; //name yoksa çalışma.
 
-    const names = name.split(",");
+    // const names = name.split(",");
     // names.forEach((name) =>  dispatch(addContact({id: nanoid(), name})));
 
-    const data = names.map((name) => ({id: nanoid(), name}));
-    dispatch(addContacts(data));  
+    // const data = names.map((name) => ({id: nanoid(), name}));
+    // dispatch(addContacts(data)); 
+    
+    dispatch(addContact({id: nanoid(), name}));
     setName("");//input boşaltmak için
   }
 
