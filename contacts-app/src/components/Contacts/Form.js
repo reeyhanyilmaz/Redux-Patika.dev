@@ -5,28 +5,34 @@ import {nanoid} from "@reduxjs/toolkit";
 
 function Form() {
   const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
       e.preventDefault(); //native davranışı engelliyoruz, submit olunca sayfanın yenilenmesini engellemek icin.
     //   console.log("saASa") ; //submit olduğunu console'dan kontrol ettim.
 
-    if(!name) return false; //name yoksa çalışma.
+    if(!name || !number) return false; //name yoksa çalışma.
 
     // const names = name.split(",");
     // names.forEach((name) =>  dispatch(addContact({id: nanoid(), name})));
 
     // const data = names.map((name) => ({id: nanoid(), name}));
     // dispatch(addContacts(data)); 
-    
-    dispatch(addContact({id: nanoid(), name}));
+
+    dispatch(addContact({id: nanoid(), name, phone_number: number}));
     setName("");//input boşaltmak için
+    setNumber(""); 
   }
 
   return (
     <div>
         <form onSubmit={handleSubmit}>
             <input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}/>
+            <input placeholder='phone number' value={number} onChange={(e) => setNumber(e.target.value)}/>
+            <div className="btn">
+              <button type='submit'> ADD  </button>
+            </div>          
         </form>
     </div>
   )

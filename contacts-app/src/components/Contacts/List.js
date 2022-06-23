@@ -10,11 +10,11 @@ function List() {
     // const total = useSelector(contactSelector.selectTotal); //kaç tane var o sayıyı döndürür  
     // console.log('total :>> ', total);
   return (
-    <div>
+    <ul className='list'>
         {
             contacts.map(contact => <Item key={contact.id}  item={contact}/>)
         }
-    </div>
+    </ul>
   )
 }
 
