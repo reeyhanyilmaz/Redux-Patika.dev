@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
-function Item({item}) {
+function Item({ item }) {
   return (
-    <div>{item.name}</div>
-  )
+    <li>
+      <span> {item.name}</span>
+      <span> {item.phone_number}</span>
+    </li>
+  );
 }
 
-export default Item; 
+export default Item;
+ 
