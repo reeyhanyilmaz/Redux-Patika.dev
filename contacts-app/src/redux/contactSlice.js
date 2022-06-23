@@ -4,15 +4,17 @@ export const contactAdapter = createEntityAdapter();
 
 const initialState = contactAdapter.getInitialState();
 
-export const contactSlice = createSlice({
+const contactSlice = createSlice({
     name: "contacts",
     initialState,
+    
     //reducers altındakiler action'larımız.
     reducers: {
         addContact: contactAdapter.addOne, //addOne entityAdapter ile geliyor.
+        addContacts: contactAdapter.addMany, //birden fazla ekleme yapmak için.
     },
  
 })
 
-export const {addContact} = contactSlice.actions;
+export const {addContact, addContacts} = contactSlice.actions;
 export default contactSlice.reducer;
