@@ -56,3 +56,12 @@ ul, li {
   text-align: center;
   cursor: pointer;
 }
+
+.removeAllBtn{
+  text-align: right;
+  cursor: pointer;
+}
+
+.removeAllBtn:hover {
+  text-decoration: underline;
+}
