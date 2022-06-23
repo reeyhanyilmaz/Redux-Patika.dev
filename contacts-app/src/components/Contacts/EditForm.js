@@ -1,9 +1,11 @@
 import {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {updateContact} from "../../redux/contactSlice";
+import {useNavigate} from "react-router-dom"
 
 function EditForm({contact}) { //edit.js'den contact'i prop çektik
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [name, setName] = useState(contact.name);
     const [number, setNumber] = useState(contact.phone_number);
     const handleSubmit = (e) => {
@@ -20,6 +22,7 @@ function EditForm({contact}) { //edit.js'den contact'i prop çektik
         }));
         setName("");
         setNumber(""); 
+        navigate("/");
     };
 
   return (
