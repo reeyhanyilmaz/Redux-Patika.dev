@@ -8,8 +8,8 @@ function List() {
     const contacts = useSelector(contactSelector.selectAll); //selectAll array olarak tutar 
     console.log('contacts :>> ', contacts);
 
-    // const total = useSelector(contactSelector.selectTotal); //kaç tane var o sayıyı döndürür  
-    // console.log('total :>> ', total);
+    const total = useSelector(contactSelector.selectTotal); //kaç tane var o sayıyı döndürür  
+    console.log('total :>> ', total);
 
     const handleDeleteAll = () => {
       if(window.confirm("Are you sure?")){
@@ -18,7 +18,11 @@ function List() {
     }
   return (
     <div>
-      <div className='removeAllBtn' onClick={handleDeleteAll}>Remove All</div>
+      {
+        total > 0 && (
+          <div className='removeAllBtn' onClick={handleDeleteAll}>Remove All</div>
+        )
+      }     
        <ul className='list'>
         {
             contacts.map(contact => <Item key={contact.id}  item={contact}/>)

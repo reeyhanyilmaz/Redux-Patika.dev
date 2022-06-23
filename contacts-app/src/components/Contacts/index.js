@@ -7,11 +7,11 @@ function Contacts() {
 
   const total = useSelector(contactSelector.selectTotal); //contactSelector state.contacts getirir bize.
   return (
-    <div id="container">
+    <>
         <h1>Contacts ({total}) </h1>
         <Form />
         <List /> 
-    </div>
+    </>
   )
 }
 
