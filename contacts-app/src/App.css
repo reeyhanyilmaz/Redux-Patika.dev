@@ -47,3 +47,12 @@ ul, li {
     padding: 5px;
     width: 60px;
 }
+
+.deleteBtn {
+  width: 18px;
+  height: 20px;
+  background-color: red;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
