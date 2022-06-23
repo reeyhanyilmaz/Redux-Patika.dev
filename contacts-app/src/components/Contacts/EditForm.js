@@ -17,7 +17,7 @@ function EditForm({contact}) { //edit.js'den contact'i prop çektik
             id: contact.id,
             changes: { //değişen şeyleri bu field'a veriyoruz.
                 name,
-                number
+                phone_number: number,
             }
         }));
         setName("");
